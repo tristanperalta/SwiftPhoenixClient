@@ -18,28 +18,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import Foundation
 
 /// A collection of default values and behaviors used accross the Client
 public class Defaults {
-    
+
     /// Default timeout when sending messages
     public static let timeoutInterval: TimeInterval = 10.0
-    
+
     /// Default interval to send heartbeats on
     public static let heartbeatInterval: TimeInterval = 30.0
-    
+
     /// Default reconnect function
     public static let steppedBackOff: (Int) -> TimeInterval = { tries in
         return tries > 4 ? 10 : [1, 2, 5, 10][tries - 1]
     }
-    
+
     /// Default encode function, utilizing JSONSerialization.data
     public static let encode: ([String: Any]) -> Data = { json in
         return try! JSONSerialization
             .data(withJSONObject: json,
                   options: JSONSerialization.WritingOptions())
     }
-    
+
     /// Default decode function, utilizing JSONSerialization.jsonObject
     public static let decode: (Data) -> [String: Any]? = { data in
         guard
@@ -72,7 +73,7 @@ public struct ChannelEvent {
     public static let reply     = "phx_reply"
     public static let error     = "phx_error"
     public static let close     = "phx_close"
-    
+
     static func isLifecyleEvent(_ event: String) -> Bool {
         switch event {
         case join, leave, reply, error, close: return true
