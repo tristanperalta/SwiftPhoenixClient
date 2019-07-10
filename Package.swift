@@ -4,9 +4,7 @@ import PackageDescription
 
 let package = Package(
   name: "SwiftPhoenixClient",
-  dependencies: [
-    .package(url: "https://github.com/daltoniam/Starscream.git", from: "3.0.6"),
-  ],
+  dependencies: [],
   targets: [
     .target(
       name: "SwiftPhoenixClient",

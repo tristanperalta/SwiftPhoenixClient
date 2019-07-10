@@ -484,7 +484,7 @@ public class Socket {
             let data = self.encode(body)
 
             self.logItems("push", "Sending \(String(data: data, encoding: String.Encoding.utf8) ?? "")" )
-            self.connection?.write(data: data)
+            self.connection?.write(data: data, completion: {})
         }
 
         /// If the socket is connected, then execute the callback immediately.
@@ -613,12 +613,12 @@ public class Socket {
                 = Timer.scheduledTimer(withTimeInterval: heartbeatInterval,
                                        repeats: true) { _ in self.sendHeartbeat() }
         } else {
-            self.heartbeatTimer
-                = Timer.scheduledTimer(timeInterval: heartbeatInterval,
-                                       target: self,
-                                       selector: #selector(sendHeartbeat),
-                                       userInfo: nil,
-                                       repeats: false)
+            /*self.heartbeatTimer*/
+                /*= Timer.scheduledTimer(timeInterval: heartbeatInterval,*/
+                                       /*target: self,*/
+                                       /*selector: #selector(sendHeartbeat),*/
+                                       /*userInfo: nil,*/
+                                       /*repeats: false)*/
         }
     }
 
